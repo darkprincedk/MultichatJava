@@ -118,18 +118,14 @@ public class AbstractMultichatServer implements MultichatServer {
 
     }
     public synchronized void broadcast(SocketChannel s, String msg) {
-for (Entry<SocketChannel, OutputStream> entry : outsocket.entrySet())
-{
-if(!entry.getKey().equals(s)) {
-try {
-if(!msg.isEmpty())
-    
-entry.getKey().write( ByteBuffer.wrap((nickname.get(s)+msg).getBytes()));
-} catch (IOException e) {
-e.printStackTrace();
-}
-}
-}
+        outsocket.entrySet().stream().filter((entry) -> (!entry.getKey().equals(s))).forEach((entry) -> {
+            try {
+                if(!msg.isEmpty())
+                    
+                    entry.getKey().write( ByteBuffer.wrap((nickname.get(s)+msg).getBytes()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }       });
 }
     
 }
