@@ -38,7 +38,11 @@ public class ClientThread extends Thread implements Runnable {
     @Override
     public void run() {
         System.out.println("Client running ... " + socket);
-        server.broadcast(socket, instreamclient);
+        try {
+            server.broadcast(socket, instreamclient);
+        } catch (IOException ex) {
+            Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
         while (running && instreamclient!=null) {
             instreamclient = getStream(socket);
             if (instreamclient != null) {
@@ -55,9 +59,17 @@ public class ClientThread extends Thread implements Runnable {
                 
                 }
                 else if (nick.get(socket) != null) {
-                    server.broadcast(socket, "<" + nick.get(socket) + "> " + instreamclient);
+                    try {
+                        server.broadcast(socket, "<" + nick.get(socket) + "> " + instreamclient);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else {
-                    server.broadcast(socket, "<" + "???" + "> " + instreamclient);
+                    try {
+                        server.broadcast(socket, "<" + "???" + "> " + instreamclient);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClientThread.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         }

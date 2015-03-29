@@ -51,10 +51,13 @@ public class Tpchat extends Application {
     public static void main(String[] args) throws UnknownHostException, IOException {
         InetAddress add= InetAddress.getByName("127.0.0.1");
         
-        ServerChat sv;
+        /*ServerChat sv;
         sv = new ServerChat(add ,5000);
-        sv.start();
-      
+        sv.start();*/
+        ServerNIO snio;
+        snio = new ServerNIO(add,5456);
+        System.out.println("coucou");
+        snio.start();
     }
     
 }
