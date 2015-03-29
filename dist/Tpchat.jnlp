@@ -11,14 +11,12 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Tpchat.jar" size="10757" download="eager" />
+    <jar href="Tpchat.jar" size="12065" download="eager" />
     <jar href="lib/java-getopt-1.0.14.jar" size="59298" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Tpchat" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="tpchat.Tpchat"  name="Tpchat" >
-    <fx:argument>-s</fx:argument>
-  </jfx:javafx-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="tpchat.Tpchat"  name="Tpchat" />
   <update check="always"/>
 </jnlp>
